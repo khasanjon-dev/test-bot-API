@@ -1,18 +1,21 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, Serializer
 
-from users.models import User, Science, Block
+from users.models import Science, Block, User
 
 
-class UserModelSerializer(ModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
+class UserSerializer(Serializer):
+    telegram_id = serializers.IntegerField(required=False)
+    first_name = serializers.CharField(required=False)
+    last_name = serializers.CharField(required=False)
+
+
 
 
 class ScienceModelSerializer(ModelSerializer):
     class Meta:
         model = Science
-        fields = '__all__'
+        fields = ('id', 'name', 'size', 'keys', 'author')
 
 
 class BlockModelSerializer(ModelSerializer):
