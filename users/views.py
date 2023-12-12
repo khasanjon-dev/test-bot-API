@@ -1,5 +1,5 @@
 from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, UpdateModelMixin, RetrieveModelMixin, CreateModelMixin, \
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, \
     DestroyModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
@@ -8,7 +8,7 @@ from users.models import User, Science, Block
 from users.serializers import ScienceModelSerializer, BlockModelSerializer, UserSerializer
 
 
-class UserModelViewSet(RetrieveModelMixin, UpdateModelMixin, ListModelMixin, GenericViewSet):
+class UserModelViewSet(ListModelMixin, GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -20,11 +20,11 @@ class UserModelViewSet(RetrieveModelMixin, UpdateModelMixin, ListModelMixin, Gen
         if User.objects.filter(telegram_id=telegram_id).exists():
             User.objects.filter(telegram_id=telegram_id).update(**serializer.data)
             user = User.objects.get(telegram_id=telegram_id)
-            serializer.data['id'] = user.id
+            serializer = self.get_serializer(user)
             return Response(serializer.data)
         User.objects.create(**serializer.data)
         user = User.objects.get(telegram_id=telegram_id)
-        serializer.data['id'] = user.id
+        serializer = self.get_serializer(user)
         return Response(serializer.data, 201)
 
 

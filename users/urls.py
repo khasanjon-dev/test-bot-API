@@ -6,7 +6,7 @@ from users.views import UserModelViewSet, ScienceModelViewSet, BlockModelViewSet
 router = DefaultRouter()
 router.register('user', UserModelViewSet, 'user')
 router.register('science', ScienceModelViewSet, 'science')
-router.register('block', BlockModelViewSet, 'block')
+# router.register('block', BlockModelViewSet, 'block')
 urlpatterns = [
     path('', include(router.urls))
 ]
