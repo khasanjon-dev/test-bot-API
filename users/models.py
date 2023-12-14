@@ -1,4 +1,5 @@
-from django.db.models import Model, CharField, BigIntegerField, DateTimeField, IntegerField, ForeignKey, CASCADE
+from django.db.models import Model, CharField, BigIntegerField, DateTimeField, IntegerField, ForeignKey, CASCADE, \
+    BooleanField
 
 
 class User(Model):
@@ -14,16 +15,24 @@ class Science(Model):
     name = CharField(max_length=150)
     size = IntegerField()
     keys = CharField(max_length=250)
+    # boolean
+    is_active = BooleanField(default=True)
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
     author = ForeignKey(User, CASCADE, 'sciences')
 
 
+class CheckTestAnswers(Model):
+    test_id = ForeignKey(Science, CASCADE, 'answers')
+
+
 class Block(Model):
     name = CharField(max_length=150, default='Blok Test')
     size = IntegerField()
     keys = CharField(max_length=250)
+    # boolean
+    is_active = BooleanField(default=True)
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
