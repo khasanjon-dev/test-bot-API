@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, \
     DestroyModelMixin
@@ -13,7 +14,7 @@ class UserModelViewSet(ListModelMixin, GenericViewSet):
     serializer_class = UserSerializer
 
     @action(['post'], False, 'get-or-create')
-    def get_or_create(self, request):
+    def get_or_create_user(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         telegram_id = serializer.data.get('telegram_id')
@@ -26,6 +27,15 @@ class UserModelViewSet(ListModelMixin, GenericViewSet):
         user = User.objects.get(telegram_id=telegram_id)
         serializer = self.get_serializer(user)
         return Response(serializer.data, 201)
+
+    @action(['post'], False, 'get-user')
+    def get_user(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        telegram_id = serializer.data.get('telegram_id')
+        user = get_object_or_404(User, telegram_id=telegram_id)
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)
 
 
 class ScienceModelViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, DestroyModelMixin, GenericViewSet):

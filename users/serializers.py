@@ -6,7 +6,7 @@ from users.models import Science, Block
 
 class UserSerializer(Serializer):
     id = serializers.IntegerField(required=False)
-    telegram_id = serializers.IntegerField(required=False)
+    telegram_id = serializers.IntegerField(required=True)
     first_name = serializers.CharField(required=False)
     last_name = serializers.CharField(required=False)
 
