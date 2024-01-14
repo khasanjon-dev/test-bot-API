@@ -13,7 +13,6 @@ class User(Model):
 
 class Science(Model):
     name = CharField(max_length=150)
-    size = IntegerField()
     keys = CharField(max_length=250)
     # boolean
     is_active = BooleanField(default=True)
