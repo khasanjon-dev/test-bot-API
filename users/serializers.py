@@ -14,7 +14,7 @@ class UserSerializer(Serializer):
 class ScienceModelSerializer(ModelSerializer):
     class Meta:
         model = Science
-        fields = ('id', 'name', 'size', 'keys', 'author', 'created_at')
+        fields = ('id', 'name', 'keys', 'author', 'created_at')
 
 
 class BlockModelSerializer(ModelSerializer):
