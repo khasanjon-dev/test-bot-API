@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, BigIntegerField, DateTimeField, IntegerField, ForeignKey, CASCADE, \
+from django.db.models import Model, CharField, BigIntegerField, DateTimeField, ForeignKey, CASCADE, \
     BooleanField
 
 
@@ -27,8 +27,6 @@ class CheckTestAnswers(Model):
 
 
 class Block(Model):
-    name = CharField(max_length=150, default='Blok Test')
-    size = IntegerField()
     keys = CharField(max_length=250)
     # boolean
     is_active = BooleanField(default=True)
