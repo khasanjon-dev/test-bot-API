@@ -22,7 +22,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     # my apps
-    'users'
+    'bot'
 ]
 
 MIDDLEWARE = [

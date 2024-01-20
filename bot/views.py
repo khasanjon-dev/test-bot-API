@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
-from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, \
-    DestroyModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, CreateModelMixin, DestroyModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, GenericViewSet
 
-from users.models import User, Science, Block
-from users.serializers import ScienceModelSerializer, BlockModelSerializer, UserSerializer
+from .models import User, Science, Block, Answer
+from .serializers import ScienceModelSerializer, BlockModelSerializer, UserSerializer, AnswerModelSerializer, \
+    CheckScienceSerializer
+from .utils import keys_serializer
 
 
 class UserModelViewSet(ListModelMixin, GenericViewSet):
@@ -42,7 +43,20 @@ class ScienceModelViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, 
     queryset = Science.objects.all()
     serializer_class = ScienceModelSerializer
 
+    @action(['post'], False, 'check-answer', serializer_class=CheckScienceSerializer)
+    def check_answer(self, request):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        science = get_object_or_404(Science, id=serializer.data['id'])
+        keys_author = keys_serializer(science.keys)
+        keys_user = keys_serializer(serializer.data['keys'])
+
 
 class BlockModelViewSet(ModelViewSet):
     queryset = Block.objects.all()
     serializer_class = BlockModelSerializer
+
+
+class CheckAnswerModelViewSet(ModelViewSet):
+    queryset = Answer.objects.all()
+    serializer_class = AnswerModelSerializer

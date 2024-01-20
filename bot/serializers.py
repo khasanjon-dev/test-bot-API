@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer, Serializer
 
-from users.models import Science, Block
+from .models import Science, Block, Answer
 
 
 class UserSerializer(Serializer):
@@ -14,10 +14,22 @@ class UserSerializer(Serializer):
 class ScienceModelSerializer(ModelSerializer):
     class Meta:
         model = Science
-        fields = ('id', 'name', 'keys', 'author', 'created_at')
+        fields = ('id', 'name', 'keys', 'size', 'author', 'created_at')
 
 
 class BlockModelSerializer(ModelSerializer):
     class Meta:
         model = Block
         fields = '__all__'
+
+
+class AnswerModelSerializer(ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = '__all__'
+
+
+class CheckScienceSerializer(ModelSerializer):
+    class Meta:
+        model = Science
+        fields = ('id', 'keys')
