@@ -23,20 +23,31 @@ class Science(Model):
     author = ForeignKey(User, CASCADE, 'sciences')
 
 
-class Answer(Model):
-    test = ForeignKey(Science, CASCADE, 'answers')
-    user = ForeignKey(User, CASCADE, 'answers')
-    keys = CharField(max_length=500)
-    true_answers = CharField(max_length=500)
-    false_answers = CharField(max_length=500)
-
-
 class Block(Model):
-    keys = CharField(max_length=500)
-    size = IntegerField()
+    mandatory_keys = CharField(max_length=100)
+    first_basic_keys = CharField(max_length=100)
+    second_basic_keys = CharField(max_length=100)
     # bool
     is_active = BooleanField(default=True)
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
     author = ForeignKey(User, CASCADE, 'blocks')
+
+
+class AnswerScience(Model):
+    keys = CharField(max_length=500)
+    true_answers = IntegerField()
+    false_answers = IntegerField()
+    # relationship
+    test = ForeignKey(Science, CASCADE)
+    user = ForeignKey(User, CASCADE)
+
+
+class AnswerBlock(Model):
+    keys = CharField(max_length=500)
+    true_answers = CharField(max_length=500)
+    false_answers = CharField(max_length=500)
+    # relationship
+    test = ForeignKey(Block, CASCADE)
+    user = ForeignKey(User, CASCADE)
