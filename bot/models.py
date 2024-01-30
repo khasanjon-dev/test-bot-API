@@ -42,6 +42,7 @@ class AnswerScience(Model):
     # relationship
     test = ForeignKey(Science, CASCADE)
     user = ForeignKey(User, CASCADE)
+    created_at = DateTimeField(auto_now_add=True, blank=True)
 
 
 class AnswerBlock(Model):
@@ -51,3 +52,4 @@ class AnswerBlock(Model):
     # relationship
     test = ForeignKey(Block, CASCADE)
     user = ForeignKey(User, CASCADE)
+    created_at = DateTimeField(auto_now_add=True, blank=True)
