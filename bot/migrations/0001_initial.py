@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
                 ('size', models.IntegerField()),
                 ('is_active', models.BooleanField(default=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='sciences', to='bot.user')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='tests', to='bot.user')),
             ],
         ),
         migrations.CreateModel(
