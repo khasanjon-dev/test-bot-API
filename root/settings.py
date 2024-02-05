@@ -1,9 +1,12 @@
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(os.path.join(BASE_DIR, 'apps'))
+# BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -22,7 +25,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     # my apps
-    'bot'
+    'users',
+    'answers',
+    'tests'
 ]
 
 MIDDLEWARE = [
@@ -58,7 +63,7 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'bot_db.sqlite3'
+        'NAME': BASE_DIR / 'bot.sqlite3'
     }
 }
 
@@ -83,7 +88,7 @@ TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATIC_URL = 'static/'
 
