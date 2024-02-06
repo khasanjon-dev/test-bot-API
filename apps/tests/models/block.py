@@ -1,12 +1,11 @@
-from django.db.models import Model, CharField, BooleanField, DateTimeField, ForeignKey, CASCADE
+from django.db.models import Model, BooleanField, DateTimeField, ForeignKey, CASCADE, JSONField
 
 from users.models import User
 
 
 class Block(Model):
-    mandatory_keys = CharField(max_length=100)
-    first_basic_keys = CharField(max_length=100)
-    second_basic_keys = CharField(max_length=100)
+    # json
+    keys = JSONField()
     # bool
     is_active = BooleanField(default=True)
     # date
