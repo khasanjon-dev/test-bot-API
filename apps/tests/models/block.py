@@ -12,3 +12,7 @@ class Block(Model):
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
     author = ForeignKey(User, CASCADE, 'blocks')
+
+    @property
+    def size(self) -> int:
+        return len(self.keys)

@@ -6,4 +6,4 @@ from tests.models import Block
 class BlockModelSerializer(ModelSerializer):
     class Meta:
         model = Block
-        fields = '__all__'
+        fields = ('id', 'keys', 'size', 'is_active', 'author', 'created_at')
