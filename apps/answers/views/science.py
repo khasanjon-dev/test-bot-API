@@ -16,6 +16,6 @@ class AnswerScienceModelViewSet(CreateModelMixin, UpdateModelMixin, DestroyModel
     def get(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        answer = get_object_or_404(AnswerScience, test=serializer.data['test'], user=serializer.data['user'])
+        answer = get_object_or_404(AnswerScience, science=serializer.data['science'], user=serializer.data['user'])
         serializer = AnswerScienceModelSerializer(answer)
         return Response(serializer.data)

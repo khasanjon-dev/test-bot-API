@@ -7,9 +7,9 @@ from answers.models import AnswerScience
 class AnswerScienceModelSerializer(ModelSerializer):
     class Meta:
         model = AnswerScience
-        fields = '__all__'
+        fields = ('true_answers', 'false_answers', 'science', 'user', 'size', 'created_at')
 
 
 class GetAnswerSerializer(Serializer):
     user = serializers.IntegerField()
-    test = serializers.IntegerField()
+    science = serializers.IntegerField()
