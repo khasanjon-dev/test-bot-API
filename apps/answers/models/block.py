@@ -6,13 +6,8 @@ from users.models import User
 
 class AnswerBlock(Model):
     # json
-    mandatory_keys_true = JSONField(max_length=30)
-    mandatory_keys_false = JSONField(max_length=30)
-    first_keys_true = JSONField(max_length=30)
-    first_keys_false = JSONField(max_length=30)
-    second_keys_true = JSONField(max_length=30)
-    second_keys_false = JSONField(max_length=30)
-
+    true_answers = JSONField(max_length=90)
+    false_answers = JSONField(max_length=90)
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
