@@ -10,6 +10,6 @@ class AnswerScienceModelSerializer(ModelSerializer):
         fields = ('true_answers', 'false_answers', 'science', 'user', 'size', 'created_at')
 
 
-class GetAnswerSerializer(Serializer):
+class GetAnswerScienceSerializer(Serializer):
     user = serializers.IntegerField()
     science = serializers.IntegerField()

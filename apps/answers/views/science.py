@@ -5,14 +5,14 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from answers.models import AnswerScience
-from answers.serializers import AnswerScienceModelSerializer, GetAnswerSerializer
+from answers.serializers import AnswerScienceModelSerializer, GetAnswerScienceSerializer
 
 
 class AnswerScienceModelViewSet(CreateModelMixin, UpdateModelMixin, DestroyModelMixin, ListModelMixin, GenericViewSet):
     queryset = AnswerScience.objects.all()
     serializer_class = AnswerScienceModelSerializer
 
-    @action(['post'], False, 'get-answer', serializer_class=GetAnswerSerializer)
+    @action(['post'], False, 'get-answer', serializer_class=GetAnswerScienceSerializer)
     def get(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

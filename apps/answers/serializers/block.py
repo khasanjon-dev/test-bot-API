@@ -1,4 +1,5 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer, Serializer
 
 from answers.models import AnswerBlock
 
@@ -6,4 +7,9 @@ from answers.models import AnswerBlock
 class AnswerBlockModelSerializer(ModelSerializer):
     class Meta:
         model = AnswerBlock
-        fields = ('true_answers', 'false_answers', 'block', 'user', 'size', 'created_at')
+        fields = '__all__'
+
+
+class GetAnswerBlockSerializer(Serializer):
+    user = serializers.IntegerField()
+    block = serializers.IntegerField()

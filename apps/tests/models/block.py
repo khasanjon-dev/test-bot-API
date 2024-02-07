@@ -5,14 +5,12 @@ from users.models import User
 
 class Block(Model):
     # json
-    keys = JSONField()
+    mandatory_keys = JSONField(max_length=30)
+    first_keys = JSONField(max_length=30)
+    second_keys = JSONField(max_length=30)
     # bool
     is_active = BooleanField(default=True)
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
     author = ForeignKey(User, CASCADE, 'blocks')
-
-    @property
-    def size(self) -> int:
-        return len(self.keys)

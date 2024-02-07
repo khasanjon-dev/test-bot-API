@@ -1,2 +1,2 @@
-from .science import AnswerScienceModelSerializer, GetAnswerSerializer
-from .block import AnswerBlockModelSerializer
+from .block import AnswerBlockModelSerializer, GetAnswerBlockSerializer
+from .science import AnswerScienceModelSerializer, GetAnswerScienceSerializer
