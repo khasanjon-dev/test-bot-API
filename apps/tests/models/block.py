@@ -5,7 +5,7 @@ from users.models import User
 
 class Block(Model):
     # json
-    keys = JSONField(max_length=90)
+    keys = JSONField()
     # bool
     is_active = BooleanField(default=True)
     # date
