@@ -5,9 +5,8 @@ from users.models import User
 
 
 class AnswerScience(Model):
-    # json
-    true_answers = JSONField()
-    false_answers = JSONField()
+    # json | only save false keys
+    false_keys = JSONField()
     # date
     created_at = DateTimeField(auto_now_add=True, blank=True)
     # relationship
@@ -16,4 +15,8 @@ class AnswerScience(Model):
 
     @property
     def size(self) -> int:
-        return len(self.true_answers) + len(self.false_answers)
+        return self.science.size
+
+    @property
+    def score(self) -> int:
+        return self.size - len(self.false_keys)

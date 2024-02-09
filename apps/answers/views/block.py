@@ -1,13 +1,14 @@
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
+from rest_framework.mixins import CreateModelMixin, RetrieveModelMixin, ListModelMixin
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 
 from answers.models import AnswerBlock
 from answers.serializers import AnswerBlockModelSerializer, GetAnswerBlockSerializer
 
 
-class AnswerBlockViewSet(ModelViewSet):
+class AnswerBlockViewSet(CreateModelMixin, RetrieveModelMixin, ListModelMixin, GenericViewSet):
     queryset = AnswerBlock.objects.all()
     serializer_class = AnswerBlockModelSerializer
 
