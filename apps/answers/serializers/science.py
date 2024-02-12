@@ -8,7 +8,7 @@ from users.models import User
 class AnswerScienceModelSerializer(ModelSerializer):
     class Meta:
         model = AnswerScience
-        fields = ('false_keys', 'science', 'user', 'size', 'score', 'created_at')
+        fields = ('false_keys', 'science', 'user', 'size', 'score', 'created_at', 'owner_id')
 
 
 class GetAnswerScienceSerializer(Serializer):
@@ -28,11 +28,3 @@ class SinceScoreSerializer(ModelSerializer):
     class Meta:
         model = AnswerScience
         fields = ('user', 'score', 'created_at')
-
-
-'''
-first_name
-last_name
-score
-created_at # answer 
-'''

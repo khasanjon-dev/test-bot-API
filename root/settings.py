@@ -21,13 +21,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # third party apps
-    'drf_yasg',
-    'rest_framework',
     # my apps
     'users',
     'answers',
-    'tests'
+    'tests',
+    'bots'
 ]
 
 MIDDLEWARE = [
@@ -97,3 +95,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%H:%M:%S | %d-%m-%Y',
 }
+
+# BOT SETTINGS
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+ADMIN_USERNAME = os.getenv('ADMIN_USERNAME')

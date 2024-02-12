@@ -27,7 +27,7 @@ class AnswerScienceModelViewSet(CreateModelMixin, ListModelMixin, GenericViewSet
 
         ```
         """
-        scores = AnswerScience.objects.filter(science_id=pk).order_by('created_at', '-false_keys')
+        scores = AnswerScience.objects.filter(science_id=pk).order_by('created_at' and '-false_keys')
         serializer = self.get_serializer(scores, many=True)
         return Response(serializer.data)
 

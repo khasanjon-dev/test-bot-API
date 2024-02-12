@@ -20,3 +20,7 @@ class AnswerScience(Model):
     @property
     def score(self) -> int:
         return self.size - len(self.false_keys)
+
+    @property
+    def owner_id(self):
+        return self.science.author.telegram_id
